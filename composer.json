@@ -1,0 +1,53 @@
+{
+  "name": "polatdev/pocket.io",
+  "type": "library",
+  "description": "Connect to websocket with PHP",
+  "keywords": [
+    "nodejs",
+    "websocket",
+    "real time",
+    "polling",
+    "php websocket"
+  ],
+  "license": "MIT",
+  "homepage": "https://pocketio.polatdev.com",
+  "authors": [
+    {
+      "name": "Abdulkadir Polat",
+      "email": "hello@polatdev.com",
+      "homepage": "https://polatdev.com/",
+      "role": "Founder"
+    }
+  ],
+  "require": {
+    "php": ">=7.4",
+    "psr/log": "3.0.0",
+    "ext-openssl": "*",
+    "ext-json": "*"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^8.0 || ^7.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "PocketIO\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "PocketIO\\": "test/"
+    }
+  },
+  "scripts": {
+    "test": [
+      "phpunit test"
+    ]
+  },
+  "config": {
+    "optimize-autoloader": true,
+    "preferred-install": "dist",
+    "sort-packages": true
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}
