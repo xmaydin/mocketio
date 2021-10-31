@@ -8,8 +8,6 @@
 
 namespace PocketIO;
 
-use Psr\Log\NullLogger;
-use Psr\Log\LoggerInterface;
 use PocketIO\Exception\SocketException;
 
 /**
@@ -21,19 +19,14 @@ class Client
     /** @var EngineInterface */
     private EngineInterface $engine;
 
-    /** @var LoggerInterface */
-    private $logger;
-
     private bool $isConnected = false;
 
     /**
      * @param EngineInterface $engine
-     * @param LoggerInterface|null $logger
      */
-    public function __construct(EngineInterface $engine, LoggerInterface $logger = null)
+    public function __construct(EngineInterface $engine)
     {
         $this->engine = $engine;
-        $this->logger = $logger ?: new NullLogger;
     }
 
     public function __destruct()
@@ -49,21 +42,13 @@ class Client
      * Connects to the websocket
      *
      * @return $this
+     * @throws SocketException
      */
     public function initialize(): Client
     {
-        try {
-            $this->logger->debug('Connecting to the websocket');
-            $this->engine->connect();
-            $this->logger->debug('Connected to the server');
 
-            $this->isConnected = true;
-        } catch (SocketException $e) {
-            $this->logger->error('Could not connect to the server', ['exception' => $e]);
-
-            throw $e;
-        }
-
+        $this->engine->connect();
+        $this->isConnected = true;
         return $this;
     }
 
@@ -74,7 +59,6 @@ class Client
      */
     public function read(): string
     {
-        $this->logger->debug('Reading a new message from the socket');
         return $this->engine->read();
     }
 
@@ -88,7 +72,6 @@ class Client
      */
     public function emit(string $event, array $args): Client
     {
-        $this->logger->debug('Sending a new message', ['event' => $event, 'args' => $args]);
         $this->engine->emit($event, $args);
 
         return $this;
@@ -102,7 +85,6 @@ class Client
      */
     public function of($namespace): Client
     {
-        $this->logger->debug('Setting the namespace', ['namespace' => $namespace]);
         $this->engine->of($namespace);
 
         return $this;
@@ -115,7 +97,6 @@ class Client
      */
     public function close(): Client
     {
-        $this->logger->debug('Closing the connection to the websocket');
         $this->engine->close();
 
         $this->isConnected = false;

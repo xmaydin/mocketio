@@ -21,7 +21,6 @@
   ],
   "require": {
     "php": ">=7.4",
-    "psr/log": "3.0.0",
     "ext-openssl": "*",
     "ext-json": "*"
   },

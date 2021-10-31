@@ -11,7 +11,6 @@ namespace PocketIO\Engine;
 use DomainException;
 use PocketIO\Engine\SocketIO\Session;
 use RuntimeException;
-use Psr\Log\LoggerInterface;
 use PocketIO\EngineInterface;
 use PocketIO\Payload\Decoder;
 use PocketIO\Exception\UnsupportedActionException;

@@ -11,11 +11,9 @@ namespace PocketIO\Engine\SocketIO;
 use Exception;
 use InvalidArgumentException;
 use UnexpectedValueException;
-
 use PocketIO\EngineInterface;
-use PocketIO\Payload\Encoder;
 use PocketIO\Engine\AbstractSocketIO;
-
+use PocketIO\Payload\Encoder;
 use PocketIO\Exception\SocketException;
 use PocketIO\Exception\UnsupportedTransportException;
 use PocketIO\Exception\ServerConnectionFailureException;
