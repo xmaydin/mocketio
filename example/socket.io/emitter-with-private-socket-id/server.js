@@ -1,11 +1,15 @@
-var server     = require('http').createServer(),
-    io         = require('socket.io')(server),
-    logger     = require('winston'),
-    port       = 1337;
+const {Server} = require("socket.io"),
+    httpServer = require("http").createServer(),
+    logger = require('winston'),
+    port = 1337;
+
+const io = new Server(httpServer, {
+    allowEIO3: true
+})
 
 // Logger config
 logger.remove(logger.transports.Console);
-logger.add(logger.transports.Console, { colorize: true, timestamp: true });
+logger.add(logger.transports.Console, {colorize: true, timestamp: true});
 logger.info('SocketIO > listening on port ' + port);
 
 // Stored tokens
@@ -18,7 +22,7 @@ var users = {};
 io.use(function (socket, next) {
     var auth = socket.request.headers.authorization;
     var user = socket.request.headers.user;
-    if(auth && user) {
+    if (auth && user) {
         const token = auth.replace("Bearer ", "");
         logger.info("auth token", token);
         // do some security check with token
@@ -30,13 +34,12 @@ io.use(function (socket, next) {
         }
 
         return next();
-    }
-    else{
+    } else {
         return next(new Error("no authorization header"));
     }
 });
 
-io.on('connection', function (socket){
+io.on('connection', function (socket) {
     var nb = 0;
 
     logger.info('SocketIO > Connected socket ' + socket.id);
@@ -56,7 +59,7 @@ io.on('connection', function (socket){
 
         var user = users[message['token']];
 
-        if(!user) {
+        if (!user) {
             logger.info('PocketIO private_chat_message > ' + 'Sorry. I don\'t remember you.');
         } else if (message['message'].indexOf('remember') !== -1) {
             logger.info('PocketIO private_chat_message > ' + 'I remember you, ' + user);
@@ -71,4 +74,4 @@ io.on('connection', function (socket){
     });
 });
 
-server.listen(port);
+httpServer.listen(port);

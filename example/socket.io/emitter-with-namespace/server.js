@@ -1,14 +1,18 @@
-var server     = require('http').createServer(),
-    io         = require('socket.io')(server),
-    logger     = require('winston'),
-    port       = 1337;
+const {Server} = require("socket.io"),
+    httpServer = require("http").createServer(),
+    logger = require('winston'),
+    port = 1337;
+
+const io = new Server(httpServer, {
+    allowEIO3: true
+})
 
 // Logger config
 logger.remove(logger.transports.Console);
-logger.add(logger.transports.Console, { colorize: true, timestamp: true });
+logger.add(logger.transports.Console, {colorize: true, timestamp: true});
 logger.info('SocketIO > listening on port ' + port);
 
-io.of('/namespace').on('connection', function (socket){
+io.of('/namespace').on('connection', function (socket) {
     var nb = 0;
 
     logger.info('SocketIO /namespace > Connected socket ' + socket.id);
@@ -24,7 +28,7 @@ io.of('/namespace').on('connection', function (socket){
     });
 });
 
-io.of('/namespace2').on('connection', function (socket){
+io.of('/namespace2').on('connection', function (socket) {
     var nb = 0;
 
     logger.info('SocketIO /namespace2 > Connected socket ' + socket.id);
@@ -40,5 +44,5 @@ io.of('/namespace2').on('connection', function (socket){
     });
 });
 
-server.listen(port);
+httpServer.listen(port);
 

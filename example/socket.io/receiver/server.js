@@ -1,14 +1,18 @@
-var server     = require('http').createServer(),
-    io         = require('socket.io')(server),
-    logger     = require('winston'),
-    port       = 1337;
+const {Server} = require("socket.io"),
+    httpServer = require("http").createServer(),
+    logger = require('winston'),
+    port = 1337;
+
+const io = new Server(httpServer, {
+    allowEIO3: true
+})
 
 // Logger config
 logger.remove(logger.transports.Console);
-logger.add(logger.transports.Console, { colorize: true, timestamp: true });
+logger.add(logger.transports.Console, {colorize: true, timestamp: true});
 logger.info('SocketIO > listening on port ' + port);
 
-io.on('connection', function (socket){
+io.on('connection', function (socket) {
     logger.info('SocketIO > Connected socket ' + socket.id);
 
     socket.on('disconnect', function () {
@@ -20,5 +24,4 @@ io.on('connection', function (socket){
     });
 });
 
-server.listen(port);
-
+httpServer.listen(port);

@@ -1,14 +1,13 @@
 {
-    "name": "example_receiver",
-    "version": "3.0.0",
-    "main": "server.js",
-
-    "scripts": {
-        "start": "supervisor --debug server.js"
-    },
-
-    "dependencies": {
-        "socket.io": "~1",
-        "winston": "*"
-    }
+  "name": "example_receiver",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "start": "supervisor --debug server.js"
+  },
+  "dependencies": {
+    "socket.io": "~1",
+    "winston": "*",
+    "supervizor": "*"
+  }
 }

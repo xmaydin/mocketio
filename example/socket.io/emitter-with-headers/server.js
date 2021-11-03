@@ -1,30 +1,32 @@
-var server     = require('http').createServer(),
-    io         = require('socket.io')(server),
-    logger     = require('winston'),
-    port       = 1337;
+const {Server} = require("socket.io"),
+    httpServer = require("http").createServer(),
+    logger = require('winston'),
+    port = 1337;
+
+const io = new Server(httpServer, {
+    allowEIO3: true
+})
 
 // Logger config
 logger.remove(logger.transports.Console);
-logger.add(logger.transports.Console, { colorize: true, timestamp: true });
+logger.add(logger.transports.Console, {colorize: true, timestamp: true});
 logger.info('SocketIO > listening on port ' + port);
 
 // set up initialization and authorization method
 io.use(function (socket, next) {
     var auth = socket.request.headers.authorization;
-    if(auth){
+    if (auth) {
         const token = auth.replace("Bearer ", "");
         logger.info("auth token", token);
         // do some security check with token
-        // ...
 
         return next();
-    }
-    else{
+    } else {
         return next(new Error("no authorization header"));
     }
 });
 
-io.on('connection', function (socket){
+io.on('connection', function (socket) {
     var nb = 0;
 
     logger.info('SocketIO > Connected socket ' + socket.id);
@@ -41,4 +43,4 @@ io.on('connection', function (socket){
     });
 });
 
-server.listen(port);
+httpServer.listen(port);
