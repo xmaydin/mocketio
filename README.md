@@ -17,9 +17,9 @@ Special thanks Elephant.IO teams.
 
 Installation
 ============
-We are suggesting you to use composer, with the following: `php composer.phar require polatdev/pocket.io`
+We are suggesting you to use composer, with the following: `php composer.phar require mesutaydin/mocket.io`
 
-Or basicly: `composer require polatdev/pocket.io`
+Or basicly: `composer require mesutaydin/mocket.io`
 
 For other ways, you can check the release page, or the git clone urls.
 
