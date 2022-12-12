@@ -16,10 +16,15 @@ use PocketIO\Exception\SocketException;
  */
 class Client
 {
-    /** @var EngineInterface */
-    private EngineInterface $engine;
+    /**
+     * @var EngineInterface
+     */
+    private $engine;
 
-    private bool $isConnected = false;
+    /**
+     * @var bool
+     */
+    private $isConnected = false;
 
     /**
      * @param EngineInterface $engine

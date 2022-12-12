@@ -15,10 +15,14 @@ use PocketIO\AbstractPayload;
  */
 class Encoder extends AbstractPayload
 {
-    /** @var string  */
-    private string $data;
-    /** @var string */
-    private string $payload;
+    /**
+     * @var string
+     */
+    private $data;
+    /**
+     * @var string
+     */
+    private $payload;
 
     /**
      * @param string $data data to encode

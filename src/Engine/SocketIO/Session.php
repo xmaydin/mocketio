@@ -15,17 +15,25 @@ use InvalidArgumentException;
  */
 class Session
 {
-    /** @var string session's id */
-    private string $id;
+    /**
+     * @var string
+     */
+    private $id;
 
-    /** @var float session's last heartbeat */
-    private float $heartbeat;
+    /**
+     * @var float
+     */
+    private $heartbeat;
 
-    /** @var float[] session's and heartbeat's timeouts */
-    private array $timeouts;
+    /**
+     * @var float[]
+     */
+    private $timeouts;
 
-    /** @var string[] supported upgrades */
-    private array $upgrades;
+    /**
+     * @var array
+     */
+    private $upgrades;
 
     public function __construct(string $id, float $interval, float $timeout, array $upgrades)
     {

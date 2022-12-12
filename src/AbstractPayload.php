@@ -32,13 +32,30 @@ abstract class AbstractPayload
     const OPCODE_CONTROL_RESERVED_4 = 0xE;
     const OPCODE_CONTROL_RESERVED_5 = 0xF;
 
-    protected int $fin = 0b1; // only one frame is necessary
-    protected array $rsv = [0b0, 0b0, 0b0]; // rsv1, rsv2, rsv3
+    /**
+     * @var int
+     */
+    protected $fin = 0b1; // only one frame is necessary
 
-    protected bool $mask = false;
-    protected string $maskKey = "\x00\x00\x00\x00";
+    /**
+     * @var int[]
+     */
+    protected $rsv = [0b0, 0b0, 0b0]; // rsv1, rsv2, rsv3
 
-    protected int $opCode;
+    /**
+     * @var bool
+     */
+    protected $mask = false;
+
+    /**
+     * @var string
+     */
+    protected $maskKey = "\x00\x00\x00\x00";
+
+    /**
+     * @var int
+     */
+    protected  $opCode;
 
     /**
      * Mask a data according to the current mask key

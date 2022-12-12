@@ -11,8 +11,8 @@ use PocketIO\Engine\SocketIO\SocketIO;
 
 require __DIR__ . '/../../../vendor/autoload.php';
 
-$client = new Client(new SocketIO('http://localhost:1337'));
+$client = new Client(new SocketIO('https://socket.cityzore.com'));
 
 $client->initialize();
-$client->emit('broadcast', ['foo' => 'bar']);
+$client->emit('mesuttest', ['message' => 'TESTT']);
 $client->close();

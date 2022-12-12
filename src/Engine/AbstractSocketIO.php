@@ -26,25 +26,39 @@ abstract class AbstractSocketIO implements EngineInterface
     const BINARY_EVENT = 5;
     const BINARY_ACK = 6;
 
-    /** @var string[] Parse url result */
-    protected array $url;
+    /**
+     * @var string[]
+     */
+    protected $url;
 
-    /** @var array cookies received during handshake */
-    protected array $cookies = [];
+    /**
+     * @var array
+     */
+    protected $cookies = [];
 
-    /** @var Session Session information */
-    protected Session $session;
+    /**
+     * @var Session
+     */
+    protected $session;
 
-    /** @var array Array of options for the engine */
-    protected array $options;
+    /**
+     * @var array
+     */
+    protected $options;
 
-    /** @var resource Resource to the connected stream */
+    /**
+     * @var resource
+     */
     protected $stream;
 
-    /** @var string the namespace of the next message */
-    protected string $namespace = '';
+    /**
+     * @var string
+     */
+    protected $namespace = '';
 
-    /** @var array Array of php stream context options */
+    /**
+     * @var array|mixed
+     */
     protected $context = [];
 
     public function __construct($url, array $options = [])
