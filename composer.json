@@ -1,5 +1,5 @@
 {
-  "name": "polatdev/pocket.io",
+  "name": "mesutaydin/mocket.io",
   "type": "library",
   "description": "Connect to websocket with PHP",
   "keywords": [
@@ -10,12 +10,12 @@
     "php websocket"
   ],
   "license": "MIT",
-  "homepage": "https://pocketio.polatdev.com",
+  "homepage": "https://www.cityzore.com",
   "authors": [
     {
-      "name": "Abdulkadir Polat",
-      "email": "hello@polatdev.com",
-      "homepage": "https://polatdev.com/",
+      "name": "Mesut Aydın",
+      "email": "contact@cityzore.com",
+      "homepage": "https://www.cityzore.com",
       "role": "Founder"
     }
   ],
